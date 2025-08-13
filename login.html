@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 100px;
+    }
+    form {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+    input, button {
+      margin: 8px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Login Page</h2>
+  <form id="login-form">
+    <input type="email" placeholder="Email" id="email" data-cy="email" required />
+    <input type="password" placeholder="Password" id="password" data-cy="password" required />
+    <button type="submit" id="login-btn" data-cy="button">Login</button>
+    <p class="error" id="error-message" style="display: none;">Email atau password salah!</p>
+  </form>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorMessage = document.getElementById('error-message');
+
+      if (email === 'nickholasleonardo@gmail.com' && password === '123PASS') {
+        window.location.href = '/dashboard.html';
+      } else {
+        errorMessage.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+</html>

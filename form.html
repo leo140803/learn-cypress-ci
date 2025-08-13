@@ -1,0 +1,72 @@
+<!-- file: form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Form Registrasi</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+    }
+    form {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+    input, select {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Form Registrasi</h2>
+  <form id="register-form">
+    <input type="text" id="name" placeholder="Nama Lengkap" data-cy="name" required />
+    <input type="email" id="email" placeholder="Email" data-cy="email" required />
+
+    <label for="gender">Jenis Kelamin:</label>
+    <select id="gender" data-cy="gender">
+      <option value="">-- Pilih --</option>
+      <option value="male">Laki-laki</option>
+      <option value="female">Perempuan</option>
+    </select>
+
+    <label>Metode Pembayaran:</label>
+    <label><input type="radio" name="payment" value="transfer" data-cy="payment-transfer" /> Transfer</label>
+    <label><input type="radio" name="payment" value="cod" data-cy="payment-cod" /> COD</label>
+
+    <label>
+      <input type="checkbox" id="agree" data-cy="agree" />
+      Saya menyetujui syarat & ketentuan
+    </label>
+
+    <button type="submit" id="submit" data-cy="submit">Daftar</button>
+    <p id="result" style="color:green; display:none;">Registrasi berhasil!</p>
+  </form>
+
+  <script>
+    document.getElementById("register-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const gender = document.getElementById("gender").value;
+      const payment = document.querySelector("input[name='payment']:checked")?.value;
+      const agree = document.getElementById("agree").checked;
+
+      if (name && email && gender && payment && agree) {
+        document.getElementById("result").style.display = "block";
+      } else {
+        alert("Lengkapi semua data dan centang persetujuan.");
+      }
+    });
+  </script>
+
+</body>
+</html>
